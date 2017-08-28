@@ -102,6 +102,11 @@ class Venda extends Model
         $this->attributes['data'] = Carbon::createFromFormat('d/m/Y', $value);
     }
     
+    public function moneytoBr($attr)
+    {
+        return number_format($this->$attr, 2, ',', '.');
+    }
+    
     
     
 }

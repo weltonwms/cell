@@ -30,7 +30,7 @@ class VendaController extends Controller {
         $dados = [
 
             'clientes' => \App\Cliente::pluck('nome', 'id'),
-            'produtos' => \App\Produto::pluck('descricao', 'id'),
+            'produtos' => \App\Produto::where('estoque','>',0)->pluck('descricao', 'id'),
             'datasetsprodutos' => \App\Produto::getDataSetsProdutos(),
         ];
         return view('vendas.create', $dados);
@@ -44,9 +44,11 @@ class VendaController extends Controller {
      */
     public function store(VendaRequest $request)
     {
-        Venda::create($request->all());
+        $newVenda=Venda::create($request->all());
+       if($newVenda->id):
         \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionCreate')]);
-        return back()->withInput();
+        endif;
+       return back()->withInput();
     }
 
     /**
@@ -71,7 +73,7 @@ class VendaController extends Controller {
         $dados = [
 
             'clientes' => \App\Cliente::pluck('nome', 'id'),
-            'produtos' => \App\Produto::pluck('descricao', 'id'),
+            'produtos' => \App\Produto::where('estoque','>',0)->orWhere('id',$venda->produto->id)->pluck('descricao', 'id'),
             'datasetsprodutos' => \App\Produto::getDataSetsProdutos(),
             'venda' => $venda,
         ];
@@ -88,7 +90,10 @@ class VendaController extends Controller {
     public function update(VendaRequest $request, Venda $venda)
     {
         $venda->update($request->all());
-        \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionUpdate')]);
+        //falha é uma flag usada por Observer ou outra classe que deseja informar erro.
+        if(!session('falha')):
+            \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionUpdate')]);
+        endif;
         return back()->withInput();
     }
 

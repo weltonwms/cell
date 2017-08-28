@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Venda;
+use App\Observers\VendaObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         require base_path('resources/macros/macros.php');
         require base_path('resources/macros/componentes.php');
+         Venda::observe(VendaObserver::class);
         
     }
 

@@ -9,7 +9,7 @@ use App\Venda;
 class Relatorio extends Model {
 
     private $query;
-    public $items;
+    public $items=[];
     public $total_lucro;
     public $total_venda;
 
@@ -38,7 +38,7 @@ class Relatorio extends Model {
             $dt = Util::dataToMysql(request('periodo_final'));
             $this->query->where('data', '<=', $dt);
         endif;
-        $this->items = $this->query->get();
+        $this->items = $this->query->orderBy('data', 'desc')->get();
         $this->calcTotalGeral();
         return $this;
     }

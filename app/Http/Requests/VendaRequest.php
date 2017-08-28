@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class VendaRequest extends FormRequest
 {
     /**
@@ -23,6 +24,12 @@ class VendaRequest extends FormRequest
      */
     public function rules()
     {
+//        $produto=\App\Produto::find(request('produto_id'));
+//        \Route::model('venda', '\App\Venda');
+//        dd($this->venda);
+        
+//        $venda = $this->route('venda');
+//        dd($venda);
        return [
             'produto_id'=>"required",
             'cliente_id'=>"required",

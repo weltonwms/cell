@@ -15,48 +15,53 @@ $dt_final = [
     'value' => request('periodo_final'),
     'atributos' => ['class' => 'dateBr']
 ];
+use App\Helpers\Util;
 ?>
 {!! Form::open(['route'=>'relatorio.index','id'=>'form-relatorio'])!!}
 
+<div class="row">
+    <div class="col-md-3">
+        {!! Form::listMultiple(['produto_id[]'=>'Produto'],$produtos,request('produto_id'),['class'=>'meu_chosen','data-placeholder'=>'-Todos-']) !!}
+    </div>
+    <div class="col-md-3">
+        {!! Form::listMultiple(['cliente_id[]'=>'Cliente'],$clientes,request('cliente_id'),['class'=>'meu_chosen','data-placeholder'=>'-Todos-']) !!}
+    </div>
+    <div class="col-md-2">
+        {!! Html::formGroupFlex($dt_inicio) !!}
+    </div>
+    <div class="col-md-2">
+        {!! Html::formGroupFlex($dt_final) !!}
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label class="control-label"><span class="glyphicon glyphicon-play"></span></label>
+        <button type="submit" class="btn  btn-primary form-control">Consultar</button>
+        </div>
 
-<div class="col-md-3">
-    {!! Form::listMultiple(['produto_id[]'=>'Produto'],$produtos,request('produto_id'),['class'=>'meu_chosen','data-placeholder'=>'-Todos-']) !!}
-</div>
-<div class="col-md-3">
-    {!! Form::listMultiple(['cliente_id[]'=>'Cliente'],$clientes,request('cliente_id'),['class'=>'meu_chosen','data-placeholder'=>'-Todos-']) !!}
-</div>
-<div class="col-md-2">
-    {!! Html::formGroupFlex($dt_inicio) !!}
-</div>
-<div class="col-md-2">
-    {!! Html::formGroupFlex($dt_final) !!}
-</div>
-<div class="col-md-2">
-    <button type="submit" class="btn  btn-primary">Consultar</button>
-
-</div>
-<div class="col-md-3">
-
-</div>
-<div class="col-md-3">
-
+    </div>
 </div>
 
 
 
 {!! Form::close() !!}
-<button class="btn"> Total Venda: {{$relatorio->total_venda}}</button>
-<button class="btn"> Total Lucro: {{$relatorio->total_lucro}}</button>
+@if($relatorio->items)
+<span class="text-primary"><b>Mostrando {{$relatorio->items->count()}} Registro(s)</b></span>
+
+@endif
+<div class="pull-right">
+    <button class="btn"> Total Venda: {{Util::moneyToBr($relatorio->total_venda)}}</button>
+    <button class="btn"> Total Lucro: {{Util::moneyToBr($relatorio->total_lucro)}}</button>
+</div>
 <table class="table table-striped table-bordered">
     <thead>
     <th>Data</th>
     <th>Cliente</th>
     <th>Produto</th>
-     <th>Vl compra</th>
+    <th>Vl compra</th>
     <th>Vl venda</th>
     <th>Qtd</th>
     <th>Total Venda</th>
-     <th>Lucro</th>
+    <th>Lucro</th>
 </thead>
 
 <tbody>
@@ -65,11 +70,11 @@ $dt_final = [
         <td>{{$item->data->format('d\/m\/Y')}}</td>
         <td>{{$item->cliente->nome}}</td>
         <td>{{$item->produto->descricao}}</td>
-        <td>{{$item->valor_compra}}</td>
-        <td>{{$item->valor_venda}}</td>
+        <td>{{$item->moneyToBr('valor_compra')}}</td>
+        <td>{{$item->moneyToBr('valor_venda')}}</td>
         <td>{{$item->qtd}}</td>
-        <td>{{$item->total_venda}}</td>
-        <td>{{$item->lucro}}</td>
+        <td>{{$item->moneyToBr('total_venda')}}</td>
+        <td>{{$item->moneyToBr('lucro')}}</td>
     </tr>
 
 

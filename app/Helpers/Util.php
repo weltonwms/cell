@@ -12,4 +12,11 @@ class Util {
         return $dtCarbon->format('Y-m-d');
     }
 
+    public static function moneyToBr($valor)
+    {
+        if ($valor):
+            return "R$ " . number_format($valor, 2, ',', '.');
+        endif;
+    }
+
 }
