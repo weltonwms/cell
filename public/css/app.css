@@ -13,7 +13,10 @@ section.page-login{
 }
 
 .navbar-brand.title-app{
-    color: pink;
+    color: #FFF212;
+}
+.header-logo{
+    margin-top: 10px;
 }
 
 div.dataTables_wrapper div.dataTables_filter {

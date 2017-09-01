@@ -4,7 +4,7 @@
 <h4>Relatório de Vendas</h4>
 <br>
 <?php
-print_r(old('produto_id'));
+
 $dt_inicio = [
     'field' => 'periodo_inicial', 'label' => 'Período Inicial', 'errors' => $errors,
     'value' => request('periodo_inicial'),
