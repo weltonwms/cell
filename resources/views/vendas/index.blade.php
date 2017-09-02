@@ -29,6 +29,7 @@
             <th>Valor Un. Compra</th>
             <th>Valor Un. Venda</th>
             <th>Qtd</th>
+             <th>Pagamento</th>
             <th>Acões</th>
         </tr>
     </thead>
@@ -43,6 +44,7 @@
             <td>R$ {{$venda->formated_valor_compra}}</td>
             <td> R$ {{$venda->formated_valor_venda}}</td>
             <td>{{$venda->qtd}}</td>
+            <td>{{$venda->nome_forma_pagamento}}</td>
             <td class="col-md-2">
                 <button data-toggle="modal" data-target="#myModal"
 			class='btn btn-default' data-href="{{url("vendas/$venda->id/edit")}}">Editar

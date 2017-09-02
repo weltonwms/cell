@@ -21,6 +21,7 @@ class CreateVendasTable extends Migration
 	    $table->decimal('valor_compra', 10, 2);
 	    $table->decimal('valor_venda', 10, 2);
 	    $table->integer('qtd');
+            $table->integer('forma_pagamento');
 	    $table->string('observacao')->nullable();
             $table->timestamps();
 	    $table->foreign('cliente_id')->references('id')->on('clientes');

@@ -14,6 +14,7 @@ $dt=[
              'value'=>(isset($venda))  ? $venda->data->format('d/m/Y') : \Carbon\Carbon::now()->format('d\/m\/Y'),
              'atributos'=>['class'=>'dateBr']
          ];
+$formas_pagamento=['1'=>'Dinheiro','2'=>'Cartão'];
 
 ?>
 
@@ -40,10 +41,15 @@ $dt=[
     <div class="col-md-2 ">
         {!! Html::formGroup('qtd','Qtd',$errors) !!}
     </div>
+        
     <div class="col-md-2">
          <div class="form-group  "><label for="total" class="control-label">Total</label>
              <input class=" form-control money" name="total" type="text" id="total">
          </div>
+    </div>
+        
+        <div class="col-md-4">
+        {!! Html::formGroupSelect('forma_pagamento',$formas_pagamento,'Forma Pagamento',$errors,' meu_chosen') !!}
     </div>
         </div>
 </div>

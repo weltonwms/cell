@@ -15,6 +15,7 @@ $dt_final = [
     'value' => request('periodo_final'),
     'atributos' => ['class' => 'dateBr']
 ];
+$formas_pg=[""=>'-Todos-','1'=>'Dinheiro','2'=>'Cartão'];
 use App\Helpers\Util;
 ?>
 {!! Form::open(['route'=>'relatorio.index','id'=>'form-relatorio'])!!}
@@ -23,7 +24,7 @@ use App\Helpers\Util;
     <div class="col-md-3">
         {!! Form::listMultiple(['produto_id[]'=>'Produto'],$produtos,request('produto_id'),['class'=>'meu_chosen','data-placeholder'=>'-Todos-']) !!}
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         {!! Form::listMultiple(['cliente_id[]'=>'Cliente'],$clientes,request('cliente_id'),['class'=>'meu_chosen','data-placeholder'=>'-Todos-']) !!}
     </div>
     <div class="col-md-2">
@@ -33,9 +34,12 @@ use App\Helpers\Util;
         {!! Html::formGroupFlex($dt_final) !!}
     </div>
     <div class="col-md-2">
+        {!! Form::list(['forma_pagamento'=>'Forma Pagamento'],$formas_pg,request('forma_pagamento')) !!}
+    </div>
+    <div class="col-md-1">
         <div class="form-group">
-            <label class="control-label"><span class="glyphicon glyphicon-play"></span></label>
-        <button type="submit" class="btn  btn-primary form-control">Consultar</button>
+            <label class="control-label">Buscar</label>
+        <button type="submit" class="btn   btn-primary form-control"><span class="glyphicon glyphicon-play"></span></button>
         </div>
 
     </div>
@@ -62,6 +66,7 @@ use App\Helpers\Util;
     <th>Qtd</th>
     <th>Total Venda</th>
     <th>Lucro</th>
+    <th>Pagamento</th>
 </thead>
 
 <tbody>
@@ -75,6 +80,7 @@ use App\Helpers\Util;
         <td>{{$item->qtd}}</td>
         <td>{{$item->moneyToBr('total_venda')}}</td>
         <td>{{$item->moneyToBr('lucro')}}</td>
+         <td>{{$item->nome_forma_pagamento}}</td>
     </tr>
 
 

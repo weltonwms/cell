@@ -78,6 +78,7 @@ $("#form-venda").validate({
             valor_venda: {required: true},
             produto_id: {required: true},
             cliente_id: {required: true},
+            forma_pagamento: {required: true},
             qtd: {required: true}
 
         },
@@ -87,6 +88,7 @@ $("#form-venda").validate({
             valor_venda: {required: 'Digite o valor da Venda'},
             produto_id: {required: "Selecione o Produto"},
             cliente_id: {required: "Selecione o Cliente"},
+            forma_pagamento: {required: "Selecione forma de Pagamento"},
             qtd: {required: "Digite a Qtd."}
 
         }

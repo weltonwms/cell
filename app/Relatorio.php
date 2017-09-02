@@ -38,6 +38,10 @@ class Relatorio extends Model {
             $dt = Util::dataToMysql(request('periodo_final'));
             $this->query->where('data', '<=', $dt);
         endif;
+        if (request('forma_pagamento')):
+            $this->query->where('forma_pagamento', request('forma_pagamento'));
+        endif;
+        
         $this->items = $this->query->orderBy('data', 'desc')->get();
         $this->calcTotalGeral();
         return $this;

@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class Venda extends Model
 {
-    protected $fillable=['produto_id',"cliente_id",'valor_compra','valor_venda','qtd','observacao','data'];
+    protected $fillable=['produto_id',"cliente_id",'valor_compra','valor_venda','qtd','observacao','data','forma_pagamento'];
     protected $dates = array('data');
     
     public function produto()
@@ -100,6 +100,12 @@ class Venda extends Model
     public function setDataAttribute($value)
     {
         $this->attributes['data'] = Carbon::createFromFormat('d/m/Y', $value);
+    }
+    
+    public function getNomeFormaPagamentoAttribute()
+    {
+        $nomes=[1=>'Dinheiro',2=>'Cartão'];
+        return isset($nomes[$this->forma_pagamento])?$nomes[$this->forma_pagamento]:null;
     }
     
     public function moneytoBr($attr)
