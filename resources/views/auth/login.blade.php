@@ -5,7 +5,16 @@
     <section class='page-login'>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
+                <div class="text-center">
+                    <img src="{{asset('imgs/logo.png')}}"/>
+                </div>
+                
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-danger panel-login">
                     <div class="panel-heading">Login</div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">

@@ -21,6 +21,8 @@ Route::get('/', function () {
        Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/produtosMaisVendidos', 'HomeController@produtosMaisVendidos');
+Route::get('/produtosMaiorLucro', 'HomeController@produtosMaiorLucro');
 
 Route::group(['middleware' => 'auth'], function()
 {
