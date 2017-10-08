@@ -1,5 +1,7 @@
 @extends('layouts.app')
-@include('layouts.header')
+@section('header')
+    @include('layouts.header')
+@endsection
 @section('navbar')
     @include('layouts.nav') 
 @endsection

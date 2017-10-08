@@ -1,7 +1,7 @@
  
         <!-- Scripts -->
         <script> var laravel_token = '{{ csrf_token() }}';</script>
-        <script> var base_url="http://127.0.0.1/cell/public/"</script>
+        <script> var base_url="{{ asset('/') }}"</script>
         <script src="{{ asset('plugins/jquery.min.js') }}"></script>
 <!--         <script src="{{ asset('plugins/moderniz.js') }}"></script>-->
         <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>

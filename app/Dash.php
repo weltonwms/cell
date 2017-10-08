@@ -12,6 +12,7 @@ class Dash extends Model
                 ->join('produtos as p', 'p.id', '=', 'v.produto_id')
                 ->selectRaw("SUM(v.qtd) as soma_qtd, v.produto_id, p.descricao")
                 ->groupBy('v.produto_id')
+                ->groupBy('p.descricao')
                 ->orderBy('soma_qtd','DESC')
                 ->limit(8)
                 ->get();
@@ -24,6 +25,7 @@ class Dash extends Model
                 ->join('produtos as p', 'p.id', '=', 'v.produto_id')
                 ->selectRaw("v.produto_id, SUM(v.lucro) as total_lucro, p.descricao")
                 ->groupBy('v.produto_id')
+                ->groupBy('p.descricao')
                  ->orderBy('total_lucro','DESC')
                 ->limit(8)
                 ->get();
